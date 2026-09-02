@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy-deep: #071A35;
+  --color-navy-royal: #0B3A82;
+  --color-gold-yellow: #FFC928;
+  --color-gold-bright: #F5B800;
+  --color-light-bg: #F7F9FC;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-inter text-gray-900 bg-light-bg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-poppins;
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 font-poppins font-semibold text-navy-deep bg-gold-yellow rounded-full hover:bg-gold-bright transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gold-yellow focus:ring-offset-2;
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 font-poppins font-semibold text-white bg-navy-deep border-2 border-transparent rounded-full hover:bg-navy-royal transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-navy-deep focus:ring-offset-2;
+}
+
+@utility btn-outline {
+  @apply inline-flex items-center justify-center px-6 py-3 font-poppins font-semibold text-navy-deep border-2 border-navy-deep rounded-full hover:bg-navy-deep hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-navy-deep focus:ring-offset-2;
+}
+
+@utility glass-panel {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+}

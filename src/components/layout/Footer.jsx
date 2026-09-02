@@ -1,0 +1,72 @@
+import React from 'react';
+import { BRAND, CONTACT_INFO } from '../../utils/constants';
+import { Phone, Mail, MapPin } from 'lucide-react';
+
+const Footer = () => {
+  return (
+    <footer className="bg-navy-deep text-white pt-16 pb-8 border-t-4 border-gold-yellow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+          
+          {/* Brand Column */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-navy-deep font-bold text-xl border-2 border-gold-yellow">
+                SVS
+              </div>
+              <span className="font-poppins font-bold text-2xl text-white">{BRAND.name}</span>
+            </div>
+            <p className="text-gray-300 font-inter text-sm leading-relaxed">
+              Loan assistance, business expansion support, and membership enquiries across Karnataka. We are committed to providing reliable financial guidance.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-poppins font-bold text-lg mb-6 text-gold-yellow">Quick Links</h4>
+            <ul className="space-y-3 font-inter text-sm text-gray-300">
+              <li><a href="#home" className="hover:text-gold-yellow transition-colors">Home</a></li>
+              <li><a href="#about" className="hover:text-gold-yellow transition-colors">About Us</a></li>
+              <li><a href="#services" className="hover:text-gold-yellow transition-colors">Services</a></li>
+              <li><a href="#membership" className="hover:text-gold-yellow transition-colors">Membership</a></li>
+              <li><a href="#loans" className="hover:text-gold-yellow transition-colors">Loans</a></li>
+              <li><a href="#faq" className="hover:text-gold-yellow transition-colors">FAQ</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="lg:col-span-2">
+            <h4 className="font-poppins font-bold text-lg mb-6 text-gold-yellow">Contact Us</h4>
+            <div className="space-y-4 font-inter text-sm text-gray-300">
+              <a href={`tel:${CONTACT_INFO.phone}`} className="flex items-start gap-3 hover:text-gold-yellow transition-colors group">
+                <Phone className="mt-1 text-gold-yellow group-hover:scale-110 transition-transform" size={18} />
+                <span>{CONTACT_INFO.displayPhone}</span>
+              </a>
+              <a href={`mailto:${CONTACT_INFO.email}`} className="flex items-start gap-3 hover:text-gold-yellow transition-colors group">
+                <Mail className="mt-1 text-gold-yellow group-hover:scale-110 transition-transform" size={18} />
+                <span className="break-all">{CONTACT_INFO.email}</span>
+              </a>
+              <div className="flex items-start gap-3">
+                <MapPin className="mt-1 flex-shrink-0 text-gold-yellow" size={18} />
+                <span>{CONTACT_INFO.address}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-white/20 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 font-inter">
+          <p>&copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.</p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-gold-yellow transition-colors">Terms & Conditions</a>
+            <a href="#" className="hover:text-gold-yellow transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-gold-yellow transition-colors">Disclaimer</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

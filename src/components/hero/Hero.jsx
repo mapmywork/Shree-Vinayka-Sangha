@@ -29,7 +29,7 @@ const Hero = () => {
               {BRAND.tagline}
             </h1>
             
-            <div className="mb-8">
+            <div className="mb-12">
               <span className="text-3xl md:text-4xl font-playfair font-bold text-orange-500 block mb-2">
                 {PROMOTIONS.interestRate} {PROMOTIONS.interestLabel}
               </span>
@@ -57,7 +57,7 @@ const Hero = () => {
             
             {/* Trust Badges */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {['Loan Available Across Karnataka', 'Business Expansion Support', 'Fast Approval*', 'Easy & Hassle-Free Process'].map((badge, index) => (
+              {['Loan Available Across Karnataka', 'Business Expansion Support', 'Easy & Hassle-Free Process'].map((badge, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
                     <svg className="w-3.5 h-3.5 text-green-600" fill="currentColor" viewBox="0 0 20 20">

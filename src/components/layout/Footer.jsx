@@ -1,6 +1,6 @@
 import React from 'react';
 import { BRAND, CONTACT_INFO } from '../../utils/constants';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import logoImg from '../../assets/logo/logo.jpeg';
 
 const Footer = () => {
@@ -61,6 +61,10 @@ const Footer = () => {
                     View on Google Maps
                   </a>
                 </div>
+              </div>
+              <div className="flex items-start gap-3 text-gray-300">
+                <Clock className="mt-0.5 flex-shrink-0 text-gold-yellow" size={18} />
+                <span>Working Hours: 11:00 AM to 5:30 PM</span>
               </div>
             </div>
           </div>

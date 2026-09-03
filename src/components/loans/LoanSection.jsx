@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BRAND } from '../../utils/constants';
 import { CheckCircle2, Briefcase } from 'lucide-react';
-import businessImg from '../../assets/images/business.jpeg';
+import HeroCarousel from '../hero/HeroCarousel';
 
 const LoanSection = () => {
   return (
@@ -53,11 +53,7 @@ const LoanSection = () => {
             className="w-full lg:w-1/2 relative"
           >
             <div className="relative">
-              <img 
-                src={businessImg} 
-                alt="Business Expansion" 
-                className="w-full h-auto rounded-3xl shadow-2xl relative z-10 border-4 border-white"
-              />
+              <HeroCarousel />
             
               {/* Decorative dots */}
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[radial-gradient(circle,#F5B800_2px,transparent_2px)] bg-[length:12px_12px] opacity-30"></div>

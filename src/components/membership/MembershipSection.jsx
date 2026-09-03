@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BRAND } from '../../utils/constants';
+import logoImg from '../../assets/logo/logo.jpeg';
 
 const MembershipSection = () => {
   return (
@@ -62,9 +63,11 @@ const MembershipSection = () => {
                 {/* Top Row */}
                 <div className="flex justify-between items-start">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-gold-yellow rounded-full flex items-center justify-center text-navy-deep font-bold text-sm md:text-base border-2 border-white/20">
-                      SVS
-                    </div>
+                    <img 
+                      src={logoImg} 
+                      alt="Company Logo" 
+                      className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover border-2 border-white/20 shadow-sm" 
+                    />
                     <div>
                       <h4 className="text-white font-poppins font-bold text-sm md:text-base leading-none">{BRAND.name}</h4>
                       <span className="text-gold-yellow/70 font-poppins text-[9px] md:text-[10px] leading-none mt-0.5 block">{BRAND.nameKannada}</span>

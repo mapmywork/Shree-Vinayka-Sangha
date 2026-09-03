@@ -26,17 +26,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Announcement Bar */}
-      <div className="bg-navy-deep text-gold-yellow py-2 px-4 text-xs md:text-sm font-inter">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-2 md:gap-0">
-          <p className="font-medium">
-            <span className="font-bold text-gold-bright">{PROMOTIONS.interestRate} {PROMOTIONS.interestLabel}</span> &middot; Lifetime Free Membership &middot; Loan Assistance Across Karnataka
-          </p>
-          <a href={`tel:${CONTACT_INFO.phone}`} className="hover:text-white transition-colors font-semibold">
-            Call: {CONTACT_INFO.displayPhone}
-          </a>
-        </div>
-      </div>
 
       {/* Main Navbar */}
       <nav className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-panel py-3' : 'bg-white py-4 shadow-sm'}`}>

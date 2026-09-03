@@ -13,7 +13,7 @@ const Hero = () => {
       <div className="absolute top-20 right-20 w-64 h-64 bg-gold-yellow rounded-full filter blur-3xl opacity-20 hidden lg:block"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-8">
           
           {/* Left Content */}
           <motion.div 
@@ -38,7 +38,7 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <div className="hidden sm:flex sm:flex-row gap-4 mb-10">
               <a href="#contact" className="btn-primary gap-2">
                 Apply Now <ArrowRight size={18} />
               </a>

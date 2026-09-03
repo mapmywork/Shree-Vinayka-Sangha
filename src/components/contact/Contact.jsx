@@ -78,14 +78,7 @@ const Contact = () => {
               <a href={`tel:${CONTACT_INFO.phone}`} className="btn-secondary w-full">Call Now</a>
               <a href={generateWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="btn-outline w-full border-green-600 text-green-600 hover:bg-green-600 focus:ring-green-600">WhatsApp</a>
             </div>
-            
-            {/* Map Placeholder */}
-            <div className="w-full h-48 bg-gray-100 mt-10 rounded-xl border border-gray-200 flex flex-col items-center justify-center text-gray-500 overflow-hidden relative group cursor-pointer">
-               <MapPin size={32} className="mb-2 opacity-50 group-hover:scale-110 transition-transform" />
-               <span className="font-inter text-sm">View on Google Maps</span>
-               {/* Note: Do not invent lat/lng per requirements */}
-               <div className="absolute inset-0 bg-navy-deep/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
+
           </motion.div>
 
           {/* Right: Enquiry Form */}

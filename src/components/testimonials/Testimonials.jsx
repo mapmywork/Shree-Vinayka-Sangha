@@ -10,7 +10,7 @@ const Testimonials = () => {
   const sampleTestimonials = [
     {
       id: 1,
-      text: "Sample Review: I approached Sri Vinayak Sangha (R) for a business expansion enquiry. The team was very professional and helped me understand the available options clearly.",
+      text: "Sample Review: I approached Sri Vinayak Sangha (R) — ಶ್ರೀ ವಿನಾಯಕ ಸಂಘ (ರಿ) for a business expansion enquiry. The team was very professional and helped me understand the available options clearly.",
       author: "Sample Customer",
       role: "Business Owner, Bengaluru"
     },

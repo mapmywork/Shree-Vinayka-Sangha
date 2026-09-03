@@ -34,7 +34,7 @@ const MembershipSection = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-300 font-inter text-lg"
           >
-            Join {BRAND.name} today. Gain access to our exclusive network and dedicated support for all your financial enquiries.
+            Join {BRAND.name} ({BRAND.nameKannada}) today. Gain access to our exclusive network and dedicated support for all your financial enquiries.
           </motion.p>
         </div>
 
@@ -67,6 +67,7 @@ const MembershipSection = () => {
                     </div>
                     <div>
                       <h4 className="text-white font-poppins font-bold text-sm md:text-base leading-none">{BRAND.name}</h4>
+                      <span className="text-gold-yellow/70 font-poppins text-[9px] md:text-[10px] leading-none mt-0.5 block">{BRAND.nameKannada}</span>
                       <span className="text-gold-yellow text-[10px] md:text-xs uppercase tracking-widest font-semibold">Premium</span>
                     </div>
                   </div>

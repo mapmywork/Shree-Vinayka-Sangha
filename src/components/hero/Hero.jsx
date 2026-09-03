@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BRAND, CONTACT_INFO, PROMOTIONS } from '../../utils/constants';
 import { generateWhatsAppLink } from '../../utils/whatsapp';
-import { Phone, ArrowRight, ShieldCheck, CreditCard, Building } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
+import HeroCarousel from './HeroCarousel';
 
 const Hero = () => {
   return (
@@ -22,7 +23,7 @@ const Hero = () => {
             className="w-full lg:w-7/12"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-navy-deep text-gold-yellow font-poppins text-xs md:text-sm font-semibold tracking-wide mb-6">
-              {BRAND.name}
+              {BRAND.name} &middot; {BRAND.nameKannada}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-navy-deep leading-tight mb-6">
               {BRAND.tagline}
@@ -33,7 +34,7 @@ const Hero = () => {
                 {PROMOTIONS.interestRate} {PROMOTIONS.interestLabel}
               </span>
               <p className="text-lg text-gray-600 font-inter leading-relaxed max-w-2xl">
-                Get access to loan assistance, business expansion support, and membership benefits through Sri Vinayak Sangha (R).
+                Get access to loan assistance, business expansion support, and membership benefits through Sri Vinayak Sangha (R) — ಶ್ರೀ ವಿನಾಯಕ ಸಂಘ (ರಿ).
               </p>
             </div>
 
@@ -72,38 +73,21 @@ const Hero = () => {
             </p>
           </motion.div>
 
-          {/* Right Illustration */}
+          {/* Right Illustration / Carousel */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="w-full lg:w-5/12 relative"
           >
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-navy-deep to-navy-royal rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center p-8">
-                {/* Abstract Premium Financial Illustration */}
-                <div className="relative w-full h-full flex flex-col items-center justify-center">
-                   <ShieldCheck size={80} className="text-gold-yellow mb-6 drop-shadow-lg" />
-                   <div className="flex gap-4">
-                     <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
-                       <CreditCard size={32} className="text-white" />
-                     </div>
-                     <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
-                       <Building size={32} className="text-white" />
-                     </div>
-                   </div>
-                   <div className="mt-8 text-center">
-                     <span className="text-2xl font-bold text-white block">₹ Support</span>
-                     <span className="text-gold-yellow font-medium">Growth & Expansion</span>
-                   </div>
-                </div>
-              </div>
+            <div className="relative w-full max-w-md mx-auto">
+              <HeroCarousel />
               
-              {/* Floating Cards */}
+              {/* Floating Cards overlaid on the edge of the carousel */}
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute -top-6 -right-6 glass-panel p-4 rounded-xl max-w-[180px]"
+                className="absolute -top-6 -right-6 glass-panel p-4 rounded-xl max-w-[180px] z-20 shadow-lg"
               >
                 <p className="text-navy-deep font-bold text-sm leading-tight">{PROMOTIONS.interestRate} {PROMOTIONS.interestLabel}</p>
               </motion.div>
@@ -111,7 +95,7 @@ const Hero = () => {
               <motion.div 
                 animate={{ y: [0, 10, 0] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-8 -left-8 glass-panel p-4 rounded-xl max-w-[200px]"
+                className="absolute -bottom-8 -left-8 glass-panel p-4 rounded-xl max-w-[200px] z-20 shadow-lg"
               >
                 <p className="text-navy-deep font-bold text-sm leading-tight">Karnataka Loan Availability</p>
               </motion.div>

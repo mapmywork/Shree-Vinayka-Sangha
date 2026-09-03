@@ -8,6 +8,7 @@ export const CONTACT_INFO = {
 
 export const BRAND = {
   name: 'Sri Vinayak Sangha (R)',
+  nameKannada: 'ಶ್ರೀ ವಿನಾಯಕ ಸಂಘ (ರಿ)',
   tagline: 'Financial Support for Your Dreams',
 };
 

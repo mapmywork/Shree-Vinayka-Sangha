@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { BRAND, CONTACT_INFO, PROMOTIONS } from '../../utils/constants';
+import logoImg from '../../assets/logo/logo.jpeg';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,9 +19,8 @@ const Navbar = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Membership', href: '#membership' },
+    { name: 'Calculator', href: '#calculator' },
     { name: 'Loans', href: '#loans' },
-    { name: 'FAQ', href: '#faq' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -43,10 +43,11 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-navy-deep rounded-full flex items-center justify-center text-gold-yellow font-bold text-xl border-2 border-gold-yellow shadow-sm">
-              SVS
+            <img src={logoImg} alt={BRAND.name} className="w-10 h-10 rounded-full object-cover border-2 border-gold-yellow shadow-sm" />
+            <div className="flex flex-col">
+              <span className="font-poppins font-bold text-lg md:text-xl text-navy-deep leading-tight">{BRAND.name}</span>
+              <span className="font-poppins font-semibold text-xs text-navy-royal/70 leading-tight">{BRAND.nameKannada}</span>
             </div>
-            <span className="font-poppins font-bold text-lg md:text-xl text-navy-deep">{BRAND.name}</span>
           </a>
 
           {/* Desktop Navigation */}

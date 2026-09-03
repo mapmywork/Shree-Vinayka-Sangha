@@ -1,25 +1,23 @@
 import React from 'react';
 import Hero from '../components/hero/Hero';
-import TrustBar from '../components/trust/TrustBar';
+import BannerCarousel from '../components/banner/BannerCarousel';
+import AboutUs from '../components/about/AboutUs';
 import ServicesSection from '../components/services/ServicesSection';
 import LoanSection from '../components/loans/LoanSection';
-import MembershipSection from '../components/membership/MembershipSection';
+import EmiCalculator from '../components/calculator/EmiCalculator';
 import ProcessSection from '../components/process/ProcessSection';
-import Testimonials from '../components/testimonials/Testimonials';
-import FAQ from '../components/faq/FAQ';
 import Contact from '../components/contact/Contact';
 
 const Home = () => {
   return (
     <div className="w-full">
       <Hero />
-      <TrustBar />
+      <BannerCarousel />
+      <AboutUs />
       <ServicesSection />
       <LoanSection />
-      <MembershipSection />
       <ProcessSection />
-      <Testimonials />
-      <FAQ />
+      <EmiCalculator />
       <Contact />
     </div>
   );

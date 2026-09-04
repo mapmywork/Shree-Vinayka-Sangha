@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../../utils/constants';
 import { generateWhatsAppLink } from '../../utils/whatsapp';
 
 const FloatingActions = () => {
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0,
+      }
+    );
+
+    observer.observe(footer);
+
+    return () => {
+      if (footer) {
+        observer.unobserve(footer);
+      }
+    };
+  }, []);
+
   return (
     <>
       {/* Desktop Floating Actions (Bottom Right) */}
-      <div className="hidden md:flex fixed bottom-8 right-8 flex-col gap-4 z-50">
+      <div className={`hidden md:flex fixed bottom-8 right-8 flex-col gap-4 z-50 transition-opacity duration-300 ${isFooterVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <a 
           href={generateWhatsAppLink()}
           target="_blank"
@@ -30,7 +55,7 @@ const FloatingActions = () => {
       </div>
 
       {/* Mobile Fixed Bottom Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50 flex font-inter">
+      <div className={`md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50 flex font-inter transition-transform duration-300 ${isFooterVisible ? 'translate-y-full' : 'translate-y-0'}`}>
         <a 
           href={`tel:${CONTACT_INFO.phone}`}
           className="flex-1 py-4 flex items-center justify-center gap-2 text-navy-deep font-semibold border-r border-gray-200 hover:bg-gray-50 active:bg-gray-100"

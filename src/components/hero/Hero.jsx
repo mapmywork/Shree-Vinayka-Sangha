@@ -31,7 +31,7 @@ const Hero = () => {
             
             <div className="mb-12">
               <span className="text-3xl md:text-4xl font-playfair font-bold text-orange-500 block mb-2">
-                {PROMOTIONS.interestRate} {PROMOTIONS.interestLabel}
+                <span className="font-normal">{PROMOTIONS.interestRate}</span> {PROMOTIONS.interestLabel}
               </span>
               <p className="text-lg text-gray-600 font-inter leading-relaxed max-w-2xl">
                 Get access to loan assistance, business expansion support, and membership benefits through Sri Vinayak Sangha (R) — ಶ್ರೀ ವಿನಾಯಕ ಸಂಘ (ರಿ).
@@ -89,7 +89,7 @@ const Hero = () => {
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="absolute -top-6 -right-6 glass-panel p-4 rounded-xl max-w-[180px] z-20 shadow-lg"
               >
-                <p className="text-navy-deep font-bold text-sm leading-tight">{PROMOTIONS.interestRate} {PROMOTIONS.interestLabel}</p>
+                <p className="text-navy-deep font-bold text-sm leading-tight"><span className="font-normal">{PROMOTIONS.interestRate}</span> {PROMOTIONS.interestLabel}</p>
               </motion.div>
 
               <motion.div 

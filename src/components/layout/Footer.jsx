@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BRAND, CONTACT_INFO } from '../../utils/constants';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import logoImg from '../../assets/logo/logo.jpeg';
@@ -71,32 +72,11 @@ const Footer = () => {
 
         </div>
 
-        {/* Terms and Conditions block */}
-        <div className="border-t border-white/10 pt-8 mt-2 mb-8 text-xs text-gray-400 font-inter space-y-3 bg-navy-deep/50 rounded-lg p-6 border border-white/5">
-          <h5 className="font-poppins font-bold text-gray-300 text-sm uppercase tracking-wider mb-4">TERMS & CONDITIONS</h5>
-          <p>
-            Loan Processing Fee, Documentation Charges ಹಾಗೂ Transfer Charges ಅನ್ವಯವಾಗುತ್ತವೆ.
-          </p>
-          <p>
-            ಮೇಲ್ಕಂಡ ಎಲ್ಲಾ ಶುಲ್ಕಗಳು ಸಂಸ್ಥೆಯ ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತವೆ. ಶುಲ್ಕಗಳ ವಿವರಗಳು ಹಾಗೂ ಅನ್ವಯಿಸುವ ಷರತ್ತುಗಳನ್ನು ಅಧಿಕೃತ ದಾಖಲೆಗಳಲ್ಲಿ ಪರಿಶೀಲಿಸಬಹುದು.
-          </p>
-          <p className="font-medium text-gray-300">
-            Terms & Conditions Apply.<br />
-            ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು ಅನ್ವಯಿಸುತ್ತವೆ.
-          </p>
-          <div className="pt-2 mt-2 border-t border-white/5">
-            <span className="font-semibold text-gray-300 block mb-1">Website / Official Documents Update:</span>
-            <p>
-              ಸಂಪೂರ್ಣ ಶುಲ್ಕ ವಿವರಗಳು, ಅರ್ಹತಾ ಮಾನದಂಡಗಳು, ಅಗತ್ಯ ದಾಖಲೆಗಳು ಹಾಗೂ ಅನ್ವಯಿಸುವ ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳನ್ನು ಸಂಸ್ಥೆಯ ಅಧಿಕೃತ Website / Documents ನಲ್ಲಿ ಪರಿಶೀಲಿಸಿ.
-            </p>
-          </div>
-        </div>
-
         {/* Divider */}
         <div className="border-t border-white/20 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 font-inter">
           <p>&copy; {new Date().getFullYear()} {BRAND.name} &middot; {BRAND.nameKannada}. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-gold-yellow transition-colors">Terms & Conditions</a>
+            <Link to="/terms" className="hover:text-gold-yellow transition-colors">Terms & Conditions</Link>
             <a href="#" className="hover:text-gold-yellow transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-gold-yellow transition-colors">Disclaimer</a>
           </div>

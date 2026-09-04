@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import FloatingActions from './components/layout/FloatingActions';
 import Home from './pages/Home';
 import { BRAND } from './utils/constants';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/terms" element={<TermsAndConditions />} />
               {/* Add more routes here if needed in the future */}
             </Routes>
           </main>

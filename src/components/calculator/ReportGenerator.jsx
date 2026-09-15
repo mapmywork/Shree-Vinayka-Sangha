@@ -257,10 +257,10 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       doc.setTextColor(100, 100, 100);
       
       // Contact Info
-      doc.text(`${CONTACT_INFO.email}  |  ${CONTACT_INFO.displayPhone}`, margin, pageHeight - 28);
+      doc.text(`${CONTACT_INFO.email}  |  https://www.srivinayaksangh.com/`, margin, pageHeight - 28);
       
       // Address
-      const addressLines = doc.splitTextToSize(CONTACT_INFO.address, pageWidth - (margin * 2) - 40);
+      const addressLines = doc.splitTextToSize("Bangalore, Karnataka 560076,India", pageWidth - (margin * 2) - 40);
       doc.text(addressLines, margin, pageHeight - 23);
       
       // Date and Page Number

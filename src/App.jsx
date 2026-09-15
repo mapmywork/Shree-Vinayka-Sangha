@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import FloatingActions from './components/layout/FloatingActions';
@@ -34,6 +35,7 @@ function App() {
           
           <Footer />
           <FloatingActions />
+          <Analytics />
         </div>
       </Router>
     </HelmetProvider>

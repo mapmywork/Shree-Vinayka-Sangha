@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { BRAND } from '../../utils/constants';
+import { BRAND, CONTACT_INFO } from '../../utils/constants';
+import logoImage from '../../assets/logo/logo.jpeg';
 
 const ReportGenerator = ({ formData, summaryData, schedule }) => {
   const [reportData, setReportData] = useState({
@@ -16,11 +17,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0
-    }).format(Math.round(amount));
+    return 'INR ' + new Intl.NumberFormat('en-IN').format(Math.round(amount));
   };
 
   const generatePDF = () => {
@@ -28,30 +25,46 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
     const pageWidth = doc.internal.pageSize.width;
     const margin = 14;
 
+    const logoImg = document.getElementById('company-logo-img');
+    let textStartX = margin;
+    
+    if (logoImg) {
+      const imgWidth = 22;
+      const imgHeight = (logoImg.naturalHeight * imgWidth) / logoImg.naturalWidth || 22;
+      doc.addImage(logoImg, 'JPEG', margin, 12, imgWidth, imgHeight);
+      textStartX = margin + imgWidth + 8;
+    }
+
+    // Add Brand Name
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(40, 40, 40); // Black/Dark Grey
+    doc.text(BRAND.name, textStartX, 15);
+
     // Header Title
     doc.setFontSize(22);
-    doc.setTextColor(40, 40, 40);
-    doc.text("EMI Calculator Report", margin, 20);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(30, 64, 175); // Blue-800
+    doc.text("EMI Calculator Report", textStartX, 23);
     
-    doc.setFontSize(12);
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'normal');
     doc.setTextColor(100, 100, 100);
-    doc.text("Detailed Loan Repayment Schedule & Analysis", margin, 28);
-    
-    // Add Brand Logo / Name
-    doc.setFontSize(16);
-    doc.setTextColor(59, 130, 246); // Primary Color Blue equivalent
-    doc.text(BRAND.name, pageWidth - margin, 20, { align: 'right' });
+    doc.text("Detailed Loan Repayment Schedule & Analysis", textStartX, 30);
 
-    doc.setDrawColor(200, 200, 200);
-    doc.line(margin, 35, pageWidth - margin, 35);
+    doc.setDrawColor(200, 200, 200); // Thin grey line
+    doc.setLineWidth(0.5);
+    doc.line(margin, 38, pageWidth - margin, 38);
 
     // Contact Details Table
     doc.setFontSize(14);
-    doc.setTextColor(40, 40, 40);
-    doc.text("Contact Details", margin, 45);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(30, 64, 175); // Blue-800
+    doc.text("Contact Details", margin, 48);
 
     autoTable(doc, {
-      startY: 50,
+      startY: 53,
+      margin: { bottom: 45 },
       theme: 'plain',
       body: [
         ['EPC Name', reportData.epcName || 'N/A'],
@@ -70,10 +83,13 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
 
     // Loan Details Table
     doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(30, 64, 175); // Blue-800
     doc.text("Loan Details", margin, currentY);
 
     autoTable(doc, {
       startY: currentY + 5,
+      margin: { bottom: 45 },
       theme: 'plain',
       body: [
         ['Loan Amount', formatCurrency(formData.loanAmount)],
@@ -92,10 +108,13 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
 
     // Loan Summary Table
     doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(30, 64, 175); // Blue-800
     doc.text("Loan Summary", margin, currentY);
 
     autoTable(doc, {
       startY: currentY + 5,
+      margin: { bottom: 45 },
       theme: 'plain',
       body: [
         ['EMI', formatCurrency(summaryData.emi)],
@@ -113,8 +132,8 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       },
       didParseCell: function (data) {
         if (data.row.index >= 4) {
-          data.cell.styles.fillColor = [236, 253, 245]; // Emerald-50 background for totals
-          data.cell.styles.textColor = [5, 150, 105]; // Emerald-600 text
+          data.cell.styles.fillColor = [239, 246, 255]; // Blue-50 background for totals
+          data.cell.styles.textColor = [30, 64, 175]; // Blue-800 text
           data.cell.styles.fontStyle = 'bold';
         } else if (data.row.index % 2 === 1) {
           data.cell.styles.fillColor = [249, 250, 251];
@@ -125,7 +144,8 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
     // Repayment Schedule on a new page
     doc.addPage();
     doc.setFontSize(14);
-    doc.setTextColor(5, 150, 105); // Emerald green to match Solfin example
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(30, 64, 175); // Blue-800
     doc.text("Monthly Repayment Schedule", margin, 20);
 
     const tableData = schedule.map(row => [
@@ -138,11 +158,12 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
 
     autoTable(doc, {
       startY: 25,
+      margin: { bottom: 45 },
       head: [['Month', 'EMI (INR)', 'Principal (INR)', 'Interest (INR)', 'Balance (INR)']],
       body: tableData,
       theme: 'grid',
       headStyles: {
-        fillColor: [16, 185, 129], // Emerald-500
+        fillColor: [37, 99, 235], // Blue-600
         textColor: 255,
         fontStyle: 'bold',
         halign: 'center'
@@ -160,29 +181,107 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       },
       alternateRowStyles: {
         fillColor: [249, 250, 251]
-      },
-      didDrawPage: function (data) {
-        // Footer for every page
-        const str = 'Page ' + doc.internal.getNumberOfPages();
-        doc.setFontSize(8);
-        doc.setTextColor(150, 150, 150);
-        
-        doc.text(BRAND.name, margin, doc.internal.pageSize.height - 20);
-        doc.text('support@shreevinaykasangha.com', margin, doc.internal.pageSize.height - 15);
-        
-        doc.text(`Generated on: ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`, margin, doc.internal.pageSize.height - 10);
-        doc.text(str, doc.internal.pageSize.width - margin - 15, doc.internal.pageSize.height - 10);
-        
-        doc.setFontSize(7);
-        doc.text('Generated by EMI Calculator', doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 5, { align: 'center' });
       }
     });
+
+    // Add Final Summary Block
+    let finalY = doc.lastAutoTable.finalY;
+    if (finalY + 60 > doc.internal.pageSize.height - 45) {
+      doc.addPage();
+      finalY = 20;
+    } else {
+      finalY += 15;
+    }
+
+    const totalPrincipal = formData.loanAmount;
+    const totalEmiPaid = summaryData.emi * formData.tenureMonths;
+    const totalInterestBefore = summaryData.totalInterestPaid;
+    const totalInterestAfter = Math.round(totalInterestBefore * 0.8);
+
+    autoTable(doc, {
+      startY: finalY,
+      margin: { bottom: 45, left: margin, right: margin },
+      theme: 'plain',
+      body: [
+        ['Total EMI Paid', formatCurrency(totalEmiPaid)],
+        ['Total Principal', formatCurrency(totalPrincipal)],
+        ['Total Interest (before cashback)', formatCurrency(totalInterestBefore)],
+        ['Total Interest (after 20% cashback)', formatCurrency(totalInterestAfter)]
+      ],
+      styles: { fontSize: 11, cellPadding: 5 },
+      columnStyles: {
+        0: { fontStyle: 'bold', textColor: [40, 40, 40] },
+        1: { fontStyle: 'bold', halign: 'right', textColor: [40, 40, 40] }
+      },
+      didParseCell: function (data) {
+        if (data.row.index === 2) {
+          data.cell.styles.textColor = [100, 100, 100];
+          data.cell.styles.fontStyle = 'normal';
+        } else if (data.row.index === 3) {
+          data.cell.styles.fillColor = [239, 246, 255]; // Blue-50
+          data.cell.styles.textColor = [30, 64, 175]; // Blue-800
+        }
+      }
+    });
+
+    // Add Disclaimer
+    let disclaimerY = doc.lastAutoTable.finalY + 15;
+    if (disclaimerY > doc.internal.pageSize.height - 45) {
+      doc.addPage();
+      disclaimerY = 20;
+    }
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.setFont(undefined, 'italic');
+    doc.text("* All figures mentioned in this report are indicative and subject to change based on the actual date of loan disbursement.", margin, disclaimerY);
+
+    // Add Footer to all pages
+    const pageCount = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      const pageHeight = doc.internal.pageSize.height;
+      const pageWidth = doc.internal.pageSize.width;
+      
+      // Footer Divider Line
+      doc.setDrawColor(37, 99, 235); // Blue-600
+      doc.line(margin, pageHeight - 40, pageWidth - margin, pageHeight - 40);
+      
+      // Brand Name
+      doc.setFontSize(10);
+      doc.setTextColor(40, 40, 40);
+      doc.setFont(undefined, 'bold');
+      doc.text(BRAND.name, margin, pageHeight - 33);
+      
+      doc.setFont(undefined, 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(100, 100, 100);
+      
+      // Contact Info
+      doc.text(`${CONTACT_INFO.email}  |  ${CONTACT_INFO.displayPhone}`, margin, pageHeight - 28);
+      
+      // Address
+      const addressLines = doc.splitTextToSize(CONTACT_INFO.address, pageWidth - (margin * 2) - 40);
+      doc.text(addressLines, margin, pageHeight - 23);
+      
+      // Date and Page Number
+      doc.text(`Generated on: ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`, margin, pageHeight - 12);
+      doc.text(`Page ${i} of ${pageCount}`, pageWidth - margin, pageHeight - 12, { align: 'right' });
+      
+      // Generated By
+      doc.setFontSize(7);
+      doc.setTextColor(150, 150, 150);
+      doc.setFont(undefined, 'italic');
+      doc.text(`Generated by ${BRAND.name} EMI Calculator`, pageWidth / 2, pageHeight - 6, { align: 'center' });
+      doc.setFont(undefined, 'normal');
+    }
 
     doc.save('EMI_Calculator_Report.pdf');
   };
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 mt-8">
+      {/* Hidden logo for PDF generation */}
+      <img id="company-logo-img" src={logoImage} alt="Company Logo" style={{ display: 'none' }} crossOrigin="anonymous" />
       <div className="flex items-center gap-2 mb-6">
         <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
         <h2 className="text-xl font-semibold text-gray-800">Download Report</h2>

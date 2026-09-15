@@ -81,7 +81,7 @@ const CalculatorForm = ({ formData, handleInputChange }) => {
             ))}
           </div>
           <div className="text-xs text-gray-500 mt-2">
-            Selected: <span className="text-navy-royal font-medium">{formData.tenureMonths} months ({(formData.tenureMonths / 12).toFixed(1).replace('.0', '')} years)</span>
+            Selected: <span className="text-navy-royal font-medium">{formData.tenureMonths ? `${formData.tenureMonths} months (${(formData.tenureMonths / 12).toFixed(1).replace('.0', '')} years)` : 'None'}</span>
           </div>
         </div>
 

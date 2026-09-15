@@ -10,14 +10,14 @@ import { BRAND } from '../utils/constants';
 
 const EmiCalculator = () => {
   const [formData, setFormData] = useState({
-    loanAmount: 500000,
-    interestRate: 5.5,
-    tenureMonths: 60,
+    loanAmount: '',
+    interestRate: '',
+    tenureMonths: '',
     state: '',
-    processingFee: 2,
-    cashback: 20,
-    subsidyAmount: 0,
-    subsidyMonth: 0
+    processingFee: '',
+    cashback: '',
+    subsidyAmount: '',
+    subsidyMonth: ''
   });
 
   const handleInputChange = (e) => {

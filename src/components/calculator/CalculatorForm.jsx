@@ -64,8 +64,8 @@ const CalculatorForm = ({ formData, handleInputChange }) => {
         {/* Loan Tenure Select - Button Style */}
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">Loan Tenure (Months)</label>
-          <div className="grid grid-cols-4 gap-2">
-            {[24, 36, 48, 60].map(months => (
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+            {[24, 36, 48, 60, 120].map(months => (
               <button
                 key={months}
                 type="button"

@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import { BRAND } from './utils/constants';
 import TermsAndConditions from './pages/TermsAndConditions';
 
+import EmiCalculator from './pages/EmiCalculator';
+
 function App() {
   return (
     <HelmetProvider>
@@ -25,6 +27,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/terms" element={<TermsAndConditions />} />
+              <Route path="/emi-calculator" element={<EmiCalculator />} />
               {/* Add more routes here if needed in the future */}
             </Routes>
           </main>

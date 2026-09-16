@@ -21,6 +21,7 @@ const Navbar = () => {
     { name: 'About', href: '/#about' },
     { name: 'Services', href: '/#services' },
     { name: 'EMI Calculator', href: '/emi-calculator' },
+    { name: 'Sanction Letter', href: '/sanction-letter' },
     { name: 'Loans', href: '/#loans' },
     { name: 'Contact', href: '/#contact' },
   ];

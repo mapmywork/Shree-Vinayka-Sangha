@@ -8,8 +8,8 @@ import FloatingActions from './components/layout/FloatingActions';
 import Home from './pages/Home';
 import { BRAND } from './utils/constants';
 import TermsAndConditions from './pages/TermsAndConditions';
-
 import EmiCalculator from './pages/EmiCalculator';
+import SanctionLetter from './pages/SanctionLetter';
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/terms" element={<TermsAndConditions />} />
               <Route path="/emi-calculator" element={<EmiCalculator />} />
+              <Route path="/sanction-letter" element={<SanctionLetter />} />
               {/* Add more routes here if needed in the future */}
             </Routes>
           </main>

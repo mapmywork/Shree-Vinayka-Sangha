@@ -207,7 +207,7 @@ const SanctionPdfGenerator = ({ formData, calculatedEmi }) => {
     doc.text(`*Signature of the Applicant .....................................................Date........./............../..................`, margin, bottomY);
 
 
-    doc.save(`Confirmation_Letter_${formData.applicantName || 'Applicant'}.pdf`);
+    doc.save(`Approval_Letter_${formData.applicantName || 'Applicant'}.pdf`);
   };
 
   return (

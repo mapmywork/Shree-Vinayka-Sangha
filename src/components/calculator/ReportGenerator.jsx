@@ -9,8 +9,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
   const [reportData, setReportData] = useState({
     epcName: '',
     rmName: '',
-    phoneNumber: '',
-    applicantName: ''
+    phoneNumber: ''
   });
 
   const handleInputChange = (e) => {
@@ -71,7 +70,6 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       body: [
         ['EPC Name', reportData.epcName || 'N/A'],
         ['RM Name', reportData.rmName || 'N/A'],
-        ['Applicant Name', reportData.applicantName || 'N/A'],
         ['Phone Number', reportData.phoneNumber || 'N/A'],
       ],
       styles: { fontSize: 10, cellPadding: 3 },
@@ -293,7 +291,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       doc.addImage(signatureImg, 'JPEG', sigX, sigY, sigWidth, sigHeight);
     }
 
-    doc.save(`EMI_Calculator_Report_${reportData.applicantName || 'Applicant'}.pdf`);
+    doc.save(`EMI Calculator ${reportData.epcName}.pdf`);
   };
 
   return (
@@ -306,18 +304,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
         <h2 className="text-xl font-semibold text-gray-800">Download Report</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Applicant Name <span className="text-red-500">*</span></label>
-          <input
-            type="text"
-            name="applicantName"
-            value={reportData.applicantName}
-            onChange={handleInputChange}
-            placeholder="Enter applicant name"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none"
-          />
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">EPC Name <span className="text-red-500">*</span></label>
           <input
@@ -355,7 +342,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
 
       <button
         onClick={generatePDF}
-        disabled={!reportData.applicantName || !reportData.epcName || !reportData.rmName || !reportData.phoneNumber}
+        disabled={!reportData.epcName || !reportData.rmName || !reportData.phoneNumber}
         className="w-full bg-navy-royal hover:bg-navy-deep text-white font-medium py-3 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>

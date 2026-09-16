@@ -6,10 +6,6 @@ const CalculatorForm = ({ formData, handleInputChange }) => {
     return val ? new Intl.NumberFormat('en-IN').format(val) : '0';
   };
 
-  const updateTenure = (months) => {
-    handleInputChange({ target: { name: 'tenureMonths', value: months } });
-  };
-
   return (
     <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
       <div className="flex items-center gap-3 mb-8">
@@ -61,27 +57,23 @@ const CalculatorForm = ({ formData, handleInputChange }) => {
           </div>
         </div>
 
-        {/* Loan Tenure Select - Button Style */}
+        {/* Loan Tenure */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Loan Tenure (Months)</label>
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-            {[24, 36, 48, 60, 120].map(months => (
-              <button
-                key={months}
-                type="button"
-                onClick={() => updateTenure(months)}
-                className={`py-2 px-1 text-sm font-medium rounded-md transition-colors ${
-                  Number(formData.tenureMonths) === months 
-                    ? 'bg-navy-royal text-white shadow-sm' 
-                    : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100'
-                }`}
-              >
-                {months} Months
-              </button>
-            ))}
-          </div>
-          <div className="text-xs text-gray-500 mt-2">
-            Selected: <span className="text-navy-royal font-medium">{formData.tenureMonths ? `${formData.tenureMonths} months (${(formData.tenureMonths / 12).toFixed(1).replace('.0', '')} years)` : 'None'}</span>
+          <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+            Loan Tenure (Years) <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="number"
+            name="tenureYears"
+            value={formData.tenureYears}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-200 rounded-md focus:ring-1 focus:ring-navy-royal focus:border-navy-royal transition outline-none text-gray-800"
+            placeholder="Enter loan tenure (e.g., 5)"
+            step="0.5"
+            min="0"
+          />
+          <div className="text-xs text-gray-500 mt-1.5">
+            Equivalent to: <span className="text-navy-royal font-medium">{formData.tenureYears ? `${Math.round(formData.tenureYears * 12)} months` : '0 months'}</span>
           </div>
         </div>
 
@@ -123,19 +115,18 @@ const CalculatorForm = ({ formData, handleInputChange }) => {
 
         {/* Processing Fee */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1.5">Processing Fee (%)</label>
+          <label className="block text-sm font-semibold text-gray-700 mb-1.5">Processing Fee (₹)</label>
           <input
             type="number"
             name="processingFee"
             value={formData.processingFee}
             onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-200 rounded-md focus:ring-1 focus:ring-navy-royal focus:border-navy-royal transition outline-none text-gray-800"
-            placeholder="Enter processing fee %"
-            step="0.1"
+            placeholder="Enter processing fee amount"
             min="0"
           />
           <div className="text-xs text-gray-500 mt-1.5">
-            Maximum 44%.
+            Enter processing fee in rupees.
           </div>
         </div>
 

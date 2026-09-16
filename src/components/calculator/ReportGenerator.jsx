@@ -3,6 +3,7 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { BRAND, CONTACT_INFO } from '../../utils/constants';
 import logoImage from '../../assets/logo/logo.jpeg';
+import authorizeSignature from '../../assets/logo/authorize.jpeg';
 
 const ReportGenerator = ({ formData, summaryData, schedule }) => {
   const [reportData, setReportData] = useState({
@@ -94,7 +95,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       body: [
         ['Loan Amount', formatCurrency(formData.loanAmount)],
         ['Interest Rate', `${formData.interestRate}% per annum`],
-        ['Loan Tenure', `${formData.tenureMonths} months (${formData.tenureMonths / 12} years)`],
+        ['Loan Tenure', `${Math.round(Number(formData.tenureYears) * 12) || 12} months (${Number(formData.tenureYears) || 1} years)`],
       ],
       styles: { fontSize: 10, cellPadding: 3 },
       columnStyles: {
@@ -194,7 +195,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
     }
 
     const totalPrincipal = formData.loanAmount;
-    const totalEmiPaid = summaryData.emi * formData.tenureMonths;
+    const totalEmiPaid = summaryData.emi * (Math.round(Number(formData.tenureYears) * 12) || 12);
     const totalInterestBefore = summaryData.totalInterestPaid;
     const totalInterestAfter = Math.round(totalInterestBefore * 0.8);
 
@@ -275,6 +276,21 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
       doc.setFont(undefined, 'normal');
     }
 
+    // Add Authorized Signature on the last page
+    doc.setPage(pageCount);
+    const signatureImg = document.getElementById('authorize-signature-img');
+    if (signatureImg) {
+      const pageHeight = doc.internal.pageSize.height;
+      const pageWidth = doc.internal.pageSize.width;
+      const sigWidth = 22;
+      const sigHeight = (signatureImg.naturalHeight * sigWidth) / signatureImg.naturalWidth || 10;
+      
+      const sigX = pageWidth - margin - sigWidth;
+      const sigY = pageHeight - 40 - sigHeight - 2; // 2 units above the blue line
+      
+      doc.addImage(signatureImg, 'JPEG', sigX, sigY, sigWidth, sigHeight);
+    }
+
     doc.save('EMI_Calculator_Report.pdf');
   };
 
@@ -282,6 +298,7 @@ const ReportGenerator = ({ formData, summaryData, schedule }) => {
     <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 mt-8">
       {/* Hidden logo for PDF generation */}
       <img id="company-logo-img" src={logoImage} alt="Company Logo" style={{ display: 'none' }} crossOrigin="anonymous" />
+      <img id="authorize-signature-img" src={authorizeSignature} alt="Authorize Signature" style={{ display: 'none' }} crossOrigin="anonymous" />
       <div className="flex items-center gap-2 mb-6">
         <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
         <h2 className="text-xl font-semibold text-gray-800">Download Report</h2>

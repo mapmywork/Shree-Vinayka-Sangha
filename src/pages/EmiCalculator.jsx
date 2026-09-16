@@ -12,7 +12,7 @@ const EmiCalculator = () => {
   const [formData, setFormData] = useState({
     loanAmount: '',
     interestRate: '',
-    tenureMonths: '',
+    tenureYears: '',
     state: '',
     processingFee: '',
     cashback: '',
@@ -31,8 +31,7 @@ const EmiCalculator = () => {
   const { schedule, summaryData } = useMemo(() => {
     const amount = Number(formData.loanAmount) || 0;
     const rate = Number(formData.interestRate) || 0;
-    const months = Number(formData.tenureMonths) || 12;
-    const pfPercentage = Number(formData.processingFee) || 0;
+    const months = Math.round(Number(formData.tenureYears) * 12) || 12;
     const cashbackPercentage = Number(formData.cashback) || 0;
     const subsidyAmt = Number(formData.subsidyAmount) || 0;
     const subsidyMon = Number(formData.subsidyMonth) || 0;
@@ -40,7 +39,7 @@ const EmiCalculator = () => {
     const emi = calculateEMI(amount, rate, months);
     const { schedule, totalInterest } = generateAmortizationSchedule(amount, rate, months, emi, subsidyAmt, subsidyMon);
     
-    const processingFeeAmount = Math.round((amount * pfPercentage) / 100);
+    const processingFeeAmount = Number(formData.processingFee) || 0;
     const gstOnPf = Math.round(processingFeeAmount * 0.18);
     const stampDuty = formData.state ? getStampDuty(formData.state, amount) : 0;
     const totalBeforeLa = processingFeeAmount + gstOnPf + stampDuty;

@@ -42,7 +42,7 @@ const EmiCalculator = () => {
     const processingFeeAmount = Number(formData.processingFee) || 0;
     const gstOnPf = Math.round(processingFeeAmount * 0.18);
     const stampDuty = formData.state ? getStampDuty(formData.state, amount) : 0;
-    const totalBeforeLa = processingFeeAmount + gstOnPf + stampDuty;
+    const totalBeforeLa = processingFeeAmount;
     
     // Flat rate approximation calculation based on Solfin metrics
     const flatRate = amount > 0 ? ((totalInterest / amount) * 100 / (months / 12)).toFixed(2) : 0;

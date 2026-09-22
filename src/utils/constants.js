@@ -1,6 +1,7 @@
 export const CONTACT_INFO = {
-  phone: '+919187326399',
-  displayPhone: '+91 9187326399',
+  phone: '18002021997',
+  displayPhone: '1800 202 1997',
+  whatsapp: '+919755812522',
   email: 'srivinayakasanghinn@gmail.com',
   address: '7, 7th Main Rd, New Extension, Mahadeshwara Nagar, BTM Layout 2nd Stage, BTM Layout, Bengaluru, Karnataka 560076, India',
   shortAddress: 'BTM Layout, Bengaluru, Karnataka',
